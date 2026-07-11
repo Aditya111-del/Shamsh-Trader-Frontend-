@@ -305,7 +305,7 @@ export default function Hero() {
             justifyContent: 'center',
           }}>
             <button
-              onClick={() => document.querySelector('#curriculum')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => window.location.href = '/register'}
               className="hover-lift"
               style={{
                 background: 'linear-gradient(90deg, #84cc16 0%, #22c55e 100%)', 

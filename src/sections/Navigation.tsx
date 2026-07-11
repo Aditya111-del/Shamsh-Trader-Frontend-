@@ -147,20 +147,46 @@ export default function Navigation() {
             </a>
           ))}
           <div className="mt-8 flex flex-col items-center gap-6 w-full">
-            <Link
-              to="/login"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-lg font-bold tracking-wider text-gray-400 uppercase hover:text-white transition-colors"
-            >
-              Login
-            </Link>
-            <Link
-              to="/register"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center justify-center w-3/4 max-w-xs gap-3 bg-gradient-to-r from-[#84cc16] to-[#22c55e] px-8 py-3 rounded-full shadow-[0_0_30px_rgba(34,197,94,0.3)] hover:scale-105 transition-transform"
-            >
-              <span className="text-black font-extrabold text-lg tracking-wide uppercase">Sign Up</span>
-            </Link>
+            {isAuthenticated ? (
+              <>
+                <span className="text-xl font-bold text-[#22c55e] uppercase tracking-wide">
+                  {user?.name} {isAdmin && '(Admin)'}
+                </span>
+                <button
+                  onClick={() => {
+                    logout();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-lg font-bold tracking-wider text-gray-400 uppercase hover:text-white transition-colors"
+                >
+                  Logout
+                </button>
+                <Link
+                  to={isAdmin ? "/admin" : "/dashboard"}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center justify-center w-3/4 max-w-xs gap-3 bg-gradient-to-r from-[#84cc16] to-[#22c55e] px-8 py-3 rounded-full shadow-[0_0_30px_rgba(34,197,94,0.3)] hover:scale-105 transition-transform mt-4"
+                >
+                  <span className="text-black font-extrabold text-lg tracking-wide uppercase">Dashboard</span>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-lg font-bold tracking-wider text-gray-400 uppercase hover:text-white transition-colors"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center justify-center w-3/4 max-w-xs gap-3 bg-gradient-to-r from-[#84cc16] to-[#22c55e] px-8 py-3 rounded-full shadow-[0_0_30px_rgba(34,197,94,0.3)] hover:scale-105 transition-transform"
+                >
+                  <span className="text-black font-extrabold text-lg tracking-wide uppercase">Sign Up</span>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
