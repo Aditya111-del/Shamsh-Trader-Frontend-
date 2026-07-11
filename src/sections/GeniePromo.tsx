@@ -4,6 +4,7 @@ import { useReveal } from '../hooks/useReveal';
 import { useParallax } from '../hooks/useParallax';
 import { useTilt } from '../hooks/useTilt';
 import { useMagnetic } from '../hooks/useMagnetic';
+import OrbVideo from '../components/OrbVideo';
 
 type ChatMsg =
   | { kind: 'user'; text: string }
@@ -357,25 +358,7 @@ export default function GeniePromo() {
               className="flex items-center gap-3.5"
               style={{ gap: 14, padding: '18px 22px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}
             >
-              <span
-                className="relative flex items-center justify-center"
-                style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 999,
-                  background: 'conic-gradient(from 0deg, #22c55e, #a855f7, #22c55e)',
-                  animation: 'orbSpin 6s linear infinite',
-                }}
-              >
-                <span
-                  className="flex items-center justify-center"
-                  style={{ width: 32, height: 32, borderRadius: 999, background: '#0c0a12' }}
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 3l1.9 5.7L19 10l-5.1 1.3L12 17l-1.9-5.7L5 10l5.1-1.3L12 3z"></path>
-                  </svg>
-                </span>
-              </span>
+              <OrbVideo size={40} />
               <span className="flex flex-col">
                 <span style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>Genie AI</span>
                 <span className="inline-flex items-center gap-1.5" style={{ gap: 6, fontSize: 11, color: 'rgba(255,255,255,0.45)' }}>
