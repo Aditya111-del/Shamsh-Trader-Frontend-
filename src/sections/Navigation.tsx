@@ -81,6 +81,12 @@ export default function Navigation() {
                 <span className="text-[13px] font-semibold text-[#22c55e] uppercase tracking-wide">
                   {user?.name} {isAdmin && '(Admin)'}
                 </span>
+                <Link
+                  to={isAdmin ? "/admin" : "/dashboard"}
+                  className="text-[13px] font-semibold text-gray-400 hover:text-white uppercase tracking-wide transition-colors"
+                >
+                  Dashboard
+                </Link>
                 <button
                   onClick={logout}
                   className="text-[13px] font-semibold text-gray-400 hover:text-white uppercase tracking-wide transition-colors"

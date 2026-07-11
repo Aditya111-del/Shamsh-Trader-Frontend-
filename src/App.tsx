@@ -15,7 +15,7 @@ import ReportDetail from './pages/ReportDetail';
 import Social from './pages/Social';
 import Marketplace from './pages/Marketplace';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import Dashboard from '@/pages/user/Dashboard';
+import Dashboard from './pages/user/Dashboard';
 import ScrollToTop from './components/ScrollToTop';
 
 import Terms from './pages/Terms';
