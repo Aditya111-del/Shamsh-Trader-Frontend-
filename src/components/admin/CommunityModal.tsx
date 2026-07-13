@@ -90,12 +90,15 @@ export default function CommunityModal({ isOpen, onClose, post, onSaved }: Commu
       let newTitle = formData.title;
       let newDuration = formData.duration;
       let newImage = formData.image || thumb;
+      let newMeta = formData.meta;
 
       try {
         toast.info('Fetching YouTube details...');
         const res = await api.get(`/community/yt-meta?url=${encodeURIComponent(url)}`);
         if (res.data.title) newTitle = res.data.title;
         if (res.data.duration) newDuration = res.data.duration;
+        if (res.data.image) newImage = res.data.image;
+        if (res.data.views) newMeta = res.data.views;
         toast.success('YouTube details fetched!');
       } catch (error) {
         console.error('Failed to fetch YouTube meta', error);
@@ -107,6 +110,7 @@ export default function CommunityModal({ isOpen, onClose, post, onSaved }: Commu
         image: newImage,
         title: newTitle,
         duration: newDuration,
+        meta: newMeta,
       }));
     }
   };
