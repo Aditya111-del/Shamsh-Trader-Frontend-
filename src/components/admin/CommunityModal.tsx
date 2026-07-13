@@ -73,7 +73,7 @@ export default function CommunityModal({ isOpen, onClose, post, onSaved }: Commu
       const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
       const match = url.match(regex);
       if (match && match[1]) {
-        return `https://img.youtube.com/vi/${match[1]}/maxresdefault.jpg`;
+        return `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg`;
       }
     } catch (e) {
       console.error(e);

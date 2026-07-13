@@ -105,6 +105,12 @@ function PostCard({
             <img
               src={imageUrl}
               alt={post.title}
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                if (target.src.includes('maxresdefault.jpg')) {
+                  target.src = target.src.replace('maxresdefault.jpg', 'hqdefault.jpg');
+                }
+              }}
               onMouseEnter={() => setImgHovered(true)}
               onMouseLeave={() => setImgHovered(false)}
               style={{
