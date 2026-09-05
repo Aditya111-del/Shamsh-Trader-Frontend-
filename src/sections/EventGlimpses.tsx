@@ -4,39 +4,39 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const GLIMPSE_EVENTS = [
   {
-    name: "Dubai Traders Meetup",
+    name: "Patna Traders Conclave",
     images: [
-      "/images/research-1.jpg", 
-      "/images/capability-2.jpg", 
-      "/images/research-3.jpg", 
-      "/images/capability-4.jpg"
+      "/images/events/patna-event-1.jpg", 
+      "/images/events/patna-event-2.jpg", 
+      "/images/events/patna-event-3.jpg", 
+      "/images/events/patna-event-4.jpg"
     ]
   },
   {
     name: "Psychology Bootcamp",
     images: [
-      "/images/capability-3.jpg", 
-      "/images/research-4.jpg", 
-      "/images/capability-1.jpg", 
-      "/images/research-2.jpg"
+      "/images/events/patna-event-2.jpg", 
+      "/images/events/patna-event-4.jpg", 
+      "/images/events/patna-event-1.jpg", 
+      "/images/events/patna-event-3.jpg"
     ]
   },
   {
     name: "Live Trading Arena",
     images: [
-      "/images/research-2.jpg", 
-      "/images/capability-4.jpg", 
-      "/images/research-1.jpg", 
-      "/images/capability-3.jpg"
+      "/images/events/patna-event-3.jpg", 
+      "/images/events/patna-event-1.jpg", 
+      "/images/events/patna-event-4.jpg", 
+      "/images/events/patna-event-2.jpg"
     ]
   },
   {
     name: "Indian Market Traders Summit",
     images: [
-      "/images/research-3.jpg",
-      "/images/capability-1.jpg",
-      "/images/capability-2.jpg",
-      "/images/research-4.jpg"
+      "/images/events/patna-event-4.jpg",
+      "/images/events/patna-event-3.jpg",
+      "/images/events/patna-event-2.jpg",
+      "/images/events/patna-event-1.jpg"
     ]
   }
 ];

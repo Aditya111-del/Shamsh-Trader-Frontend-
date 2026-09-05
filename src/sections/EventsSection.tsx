@@ -13,10 +13,10 @@ interface GalleryItem {
 }
 
 const GALLERY: GalleryItem[] = [
-  { image: '/images/capability-2.jpg', title: 'Dubai Traders Meetup', meta: '2025 · 180 attendees' },
-  { image: '/images/capability-3.jpg', title: 'Psychology Bootcamp', meta: '2025 · Online · 2.4K live' },
-  { image: '/images/research-2.jpg', title: 'Indian Market Traders Summit', meta: '2024 · Bangalore' },
-  { image: '/images/research-4.jpg', title: 'Live Trading Arena', meta: '2024 · 40+ meetups · 6 cities' },
+  { image: '/images/events/patna-event-1.jpg', title: 'Patna Traders Conclave', meta: '2025 · 300+ attendees' },
+  { image: '/images/events/patna-event-2.jpg', title: 'Registration & Desk', meta: '2025 · Live Conclave' },
+  { image: '/images/events/patna-event-3.jpg', title: 'Indian Market Conclave', meta: '2025 · Patna Edition' },
+  { image: '/images/events/patna-event-4.jpg', title: 'Keynote Stage', meta: '2025 · Live Market Analysis' },
 ];
 
 function GalleryTile({ item, delay }: { item: GalleryItem; delay: number }) {
@@ -216,7 +216,7 @@ export default function EventsSection() {
             </span>
           </div>
           <h3 style={{ fontSize: 'clamp(26px, 2.4vw, 34px)', fontWeight: 800, letterSpacing: '-0.02em', color: '#fff', margin: '0 0 14px' }}>
-            Mumbai Trading Summit 2026
+            Patna Trading Conclave 2026
           </h3>
           <p style={{ fontSize: 15, lineHeight: 1.65, color: 'rgba(255,255,255,0.6)', margin: '0 0 26px', fontWeight: 300, maxWidth: 440 }}>
             A full day of live market breakdowns, Nifty/Bank Nifty & Crypto workshops, and networking with 300+ traders from the
@@ -225,7 +225,7 @@ export default function EventsSection() {
           <div className="flex gap-6 flex-wrap" style={{ marginBottom: 28 }}>
             <span className="inline-flex items-center gap-2" style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)' }}>
               <MapPin className="w-[15px] h-[15px]" style={{ color: '#22c55e' }} />
-              Grand Hyatt, Mumbai
+              Patna, Bihar
             </span>
             <span className="inline-flex items-center gap-2" style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)' }}>
               <Clock className="w-[15px] h-[15px]" style={{ color: '#22c55e' }} />

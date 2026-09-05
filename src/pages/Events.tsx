@@ -13,12 +13,12 @@ import { toast } from 'sonner';
 
 /* ── Film strip images (reused site assets) ── */
 const FILM_STRIP_IMAGES = [
-  '/images/capability-1.jpg',
-  '/images/research-2.jpg',
-  '/images/capability-3.jpg',
-  '/images/research-4.jpg',
-  '/images/capability-2.jpg',
-  '/images/research-1.jpg',
+  '/images/events/patna-event-1.jpg',
+  '/images/events/patna-event-2.jpg',
+  '/images/events/patna-event-3.jpg',
+  '/images/events/patna-event-4.jpg',
+  '/images/events/patna-event-1.jpg',
+  '/images/events/patna-event-3.jpg',
 ];
 
 /* ── Past events archive mosaic data ── */
@@ -36,17 +36,17 @@ interface MosaicItem {
 const MOSAIC_ITEMS: MosaicItem[] = [
   {
     _id: 'static-archive-1',
-    image: '/images/research-1.jpg',
-    title: 'Dubai Traders Meetup',
-    meta: '2025 · 180 attendees · Keynote night',
+    image: '/images/events/patna-event-1.jpg',
+    title: 'Patna Traders Conclave',
+    meta: '2025 · 300+ attendees · Keynote conclave',
     badge: '2025',
     big: true,
   },
   {
     _id: 'static-archive-2',
-    image: '/images/capability-2.jpg',
-    title: 'Risk Workshop',
-    meta: '2025 · Delhi',
+    image: '/images/events/patna-event-2.jpg',
+    title: 'Registration & Welcoming Desk',
+    meta: '2025 · Patna',
     delay: 80,
   },
   {
@@ -58,25 +58,25 @@ const MOSAIC_ITEMS: MosaicItem[] = [
   },
   {
     _id: 'static-archive-4',
-    image: '/images/research-3.jpg',
+    image: '/images/events/patna-event-3.jpg',
     title: 'Indian Market Traders Summit',
-    meta: '2024 · Bangalore',
-    badge: '2024',
+    meta: '2025 · Patna Conclave Hall',
+    badge: '2025',
     tall: true,
     delay: 200,
   },
   {
     _id: 'static-archive-5',
-    image: '/images/research-2.jpg',
-    title: 'Scalping Night',
-    meta: '2024 · Mumbai',
+    image: '/images/events/patna-event-4.jpg',
+    title: 'Live Keynote Stage',
+    meta: '2025 · Patna',
     delay: 120,
   },
   {
     _id: 'static-archive-6',
-    image: '/images/capability-4.jpg',
+    image: '/images/events/patna-event-2.jpg',
     title: 'Live Trading Arena',
-    meta: '2024 · Goa retreat',
+    meta: '2025 · Community Meetup',
     delay: 180,
   },
 ];
@@ -173,10 +173,10 @@ const UPCOMING_EVENTS: UpcomingEvent[] = [
     badgeColor: '#22c55e',
     day: '24',
     month: 'AUG',
-    title: 'Mumbai Trading Summit 2026',
+    title: 'Patna Trading Conclave 2026',
     description:
       'Live market breakdowns, Indian market F&O and Crypto workshops, and an evening of networking with 300+ traders.',
-    metaLocation: 'Grand Hyatt, Mumbai',
+    metaLocation: 'Patna, Bihar',
     metaTime: '10:00 — 19:00 IST',
     status: 'AVAILABLE',
     ticketLink: '#',
