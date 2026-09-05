@@ -6,7 +6,6 @@ import {
   LayoutGrid,
   ChevronDown,
   Plus,
-  MoreVertical,
   TrendingUp,
   Shield,
   Code2,
@@ -21,6 +20,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Link } from 'react-router-dom';
 import OrbVideo from '../../components/OrbVideo';
+import Navigation from '../../sections/Navigation';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -112,25 +112,6 @@ const SUGGESTION_CHIPS = [
   },
 ];
 
-const PINNED_ITEMS = [
-  { label: 'BTC 4H sweep — long setup', suggest: 'BTC swept the 4H low into demand — is a long valid here?' },
-  {
-    label: 'Nifty & Crypto sizing',
-    suggest:
-      'What position size should I use on an account risking 0.5% per trade with a 40 point stop on Nifty 50 futures?',
-  },
-  { label: 'Gold news-week plan', suggest: 'Gold has CPI and FOMC this week. Build me a news-week game plan.' },
-  {
-    label: 'Journal review: April',
-    suggest: 'Review my trading week: 12 trades, 4 winners, net +1.8R. What should I look at in my journal?',
-  },
-];
-
-const HISTORY_GROUPS: { label: string; items: string[] }[] = [
-  { label: 'Today', items: ['Nifty 50 opening range read', 'Backtest: EMA cross idea'] },
-  { label: 'Yesterday', items: ['Revenge trading protocol', 'SOL liquidity map'] },
-  { label: '7 days', items: ['Weekly watchlist build', 'Funding rate strategy'] },
-];
 
 // ---------------------------------------------------------------------------
 // Typing dots
@@ -209,46 +190,11 @@ function AssistantBody({ content }: { content: string }) {
 // Simulated backend — fake streamed response
 // ---------------------------------------------------------------------------
 
-function buildFakeReply(mode: Mode, userText: string): string {
-  const lower = userText.toLowerCase();
-  if (mode === 'coder' || lower.includes('script') || lower.includes('code') || lower.includes('strategy')) {
-    return (
-      "Here's a starting point — validate it on out-of-sample data before risking anything on it:\n\n" +
-      '```pinescript\n' +
-      '//@version=5\n' +
-      'strategy("EMA Cross", overlay=true)\n' +
-      'fast = ta.ema(close, 20)\n' +
-      'slow = ta.ema(close, 50)\n' +
-      'longCond = ta.crossover(fast, slow)\n' +
-      'shortCond = ta.crossunder(fast, slow)\n' +
-      'if longCond\n' +
-      '    strategy.entry("Long", strategy.long)\n' +
-      'if shortCond\n' +
-      '    strategy.close("Long")\n' +
-      '```\n\n' +
-      '- Entry: 20/50 EMA cross on the close\n' +
-      '- Stop: 1.5% from entry\n' +
-      '- Target: 1:3 R\n\n' +
-      'Backtest across at least two market regimes before you trust it.'
-    );
-  }
-  if (mode === 'coach') {
-    return (
-      "Here's a concrete protocol, not a pep talk:\n\n" +
-      '- After any loss, close the platform for 15 minutes — no exceptions\n' +
-      '- Write the trade down: setup, size, what actually happened\n' +
-      '- Re-enter only if the next setup meets your written criteria, cold\n' +
-      "- Cap the day at 2 losses — if you hit it, you're done\n\n" +
-      "Discipline isn't a feeling, it's a rule you follow when you don't feel like it."
-    );
-  }
+function buildFakeReply(_mode: Mode, _userText: string): string {
   return (
-    "Here's a quick read:\n\n" +
-    '- **Structure**: price is respecting the higher-timeframe range, leaning bullish above the mid.\n' +
-    '- **Liquidity**: recent sweep of the prior low into a demand pocket — reaction was sharp, not slow.\n' +
-    '- **Bias**: long-favored above the sweep low, invalidated on a clean close back below it.\n' +
-    '- **Counter-case**: if volume stays weak on the bounce, this could be a lower-high forming instead.\n\n' +
-    'Risk 0.5-1% max, invalidation at the sweep low. This is educational, not financial advice.'
+    "🚀 **Genie AI is Launching Soon!**\n\n" +
+    "Thank you for your interest! Our institutional market analysis models, custom Pine Script generator, and risk management systems are currently in final preparation and will be launching very soon.\n\n" +
+    "Stay tuned for the official release!"
   );
 }
 
@@ -340,10 +286,12 @@ export default function AIChat() {
 
   return (
     <div
-      className="relative w-full flex overflow-hidden"
+      className="relative w-full flex flex-col overflow-hidden"
       style={{ height: '100vh', background: '#0d0d0d', fontFamily: "'Fira Sans', sans-serif" }}
     >
-      <style>{`
+      <Navigation />
+      <div className="relative w-full flex-1 flex overflow-hidden pt-[68px]">
+        <style>{`
         @keyframes genieFadeSlideUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
         @keyframes genieMsgIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
         @keyframes genieTypingDot { 0%,60%,100% { transform:translateY(0); opacity:.35; } 30% { transform:translateY(-3px); opacity:1; } }
@@ -366,6 +314,7 @@ export default function AIChat() {
       {isMobile && sidebarOpen && (
         <div
           className="fixed inset-0 z-[350] bg-black/60"
+          style={{ top: 68 }}
           onClick={() => setSidebarOpen(false)}
           aria-hidden
         />
@@ -380,14 +329,14 @@ export default function AIChat() {
           padding: sidebarOpen ? '14px 12px' : '14px 0px',
           overflowY: 'auto',
           overflowX: 'hidden',
-          height: '100vh',
+          height: 'calc(100vh - 68px)',
           width: sidebarWidth,
           flexShrink: 0,
           opacity: sidebarOpen ? 1 : 0,
           transition: 'width .38s cubic-bezier(.16,1,.3,1), padding .38s cubic-bezier(.16,1,.3,1), opacity .28s ease',
           position: isMobile ? 'fixed' : 'relative',
           left: 0,
-          top: 0,
+          top: isMobile ? 68 : 0,
           zIndex: isMobile ? 400 : 'auto',
           boxShadow: isMobile && sidebarOpen ? '20px 0 60px rgba(0,0,0,0.55)' : 'none',
         }}
@@ -453,57 +402,18 @@ export default function AIChat() {
             className="text-[11px] font-semibold uppercase"
             style={{ letterSpacing: '0.08em', color: 'rgba(255,255,255,0.3)' }}
           >
-            Pinned
-          </span>
-          <span className="flex gap-2">
-            <Plus size={13} color="rgba(255,255,255,0.35)" strokeWidth={2.5} style={{ cursor: 'pointer' }} />
-            <MoreVertical size={13} color="rgba(255,255,255,0.35)" style={{ cursor: 'pointer' }} />
+            Recent Chats
           </span>
         </div>
-        {PINNED_ITEMS.map((item) => (
-          <span
-            key={item.label}
-            onClick={() => send(item.suggest)}
-            className="genie-suggest-item flex items-center gap-[10px] px-3 py-2 rounded-[9px] text-[12.5px] cursor-pointer whitespace-nowrap overflow-hidden text-ellipsis transition-colors"
-            style={{ background: '#191919', color: 'rgba(255,255,255,0.65)' }}
-          >
-            <Sparkles size={13} color="#22c55e" style={{ flexShrink: 0 }} />
-            {item.label}
-          </span>
-        ))}
-        <span
-          className="flex items-center gap-2 px-3 py-2 text-[12px] cursor-pointer"
-          style={{ color: 'rgba(255,255,255,0.35)' }}
-        >
-          <ChevronDown size={12} strokeWidth={2.5} />
-          Show 4 more
-        </span>
-
-        {HISTORY_GROUPS.map((group) => (
-          <div key={group.label}>
-            <span
-              className="block text-[11px] font-semibold uppercase"
-              style={{ padding: '14px 12px 6px', letterSpacing: '0.08em', color: 'rgba(255,255,255,0.3)' }}
-            >
-              {group.label}
-            </span>
-            {group.items.map((item) => (
-              <span
-                key={item}
-                className="genie-history-item block px-3 py-2 rounded-[9px] text-[12.5px] cursor-pointer whitespace-nowrap overflow-hidden text-ellipsis transition-colors"
-                style={{ color: 'rgba(255,255,255,0.55)' }}
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        ))}
+        <div className="px-3 py-6 text-center">
+          <p className="text-[12px] m-0" style={{ color: 'rgba(255,255,255,0.3)' }}>No chat history yet</p>
+        </div>
       </aside>
 
       {/* ============ MAIN ============ */}
       <main
         className="relative flex-1 min-w-0 flex flex-col overflow-hidden"
-        style={{ height: '100vh', background: '#0d0d0d' }}
+        style={{ height: 'calc(100vh - 68px)', background: '#0d0d0d' }}
       >
         {/* top bar */}
         <div className="flex items-center justify-end gap-3 flex-shrink-0" style={{ padding: '14px 24px' }}>
@@ -815,6 +725,7 @@ export default function AIChat() {
           </div>
         </div>
       </main>
+      </div>
     </div>
   );
 }

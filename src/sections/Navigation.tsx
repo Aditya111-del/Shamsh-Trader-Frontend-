@@ -44,9 +44,9 @@ export default function Navigation() {
       <header className="fixed top-0 left-0 right-0 z-50 flex justify-center w-full pointer-events-none">
         <nav
           className={`pointer-events-auto w-full transition-all duration-500 flex items-center justify-between ${
-            scrolled || isMobileMenuOpen
+            scrolled || isMobileMenuOpen || location.pathname !== '/'
               ? 'premium-glass shadow-[0_10px_40px_rgba(0,0,0,0.8)] opacity-100 translate-y-0 px-8 py-4 rounded-none max-w-full'
-              : 'opacity-0 -translate-y-[150%] px-6 py-3 rounded-full max-w-[1100px]'
+              : 'premium-glass border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.6)] opacity-100 translate-y-0 mt-3 px-6 py-3 rounded-full max-w-[1100px]'
           }`}
         >
           {/* Brand */}
