@@ -7,8 +7,16 @@ interface ProtectedRouteProps {
 }
 
 export default function ProtectedRoute({ children, adminOnly = false }: ProtectedRouteProps) {
-  const { isAuthenticated, isAdmin } = useAuth();
+  const { isAuthenticated, isAdmin, isLoading } = useAuth();
   const location = useLocation();
+
+  if (isLoading) {
+    return (
+      <div className="w-full min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+        <div className="w-8 h-8 rounded-full border-2 border-green-500/30 border-t-green-500 animate-spin" />
+      </div>
+    );
+  }
 
   if (!isAuthenticated) {
     // Redirect to login but save the attempted url

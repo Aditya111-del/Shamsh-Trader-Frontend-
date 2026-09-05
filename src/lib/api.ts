@@ -10,8 +10,13 @@ const api = axios.create({
 // (e.g. cross-origin dev setup, Postman-like clients, or cookie timing issues)
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('authToken');
-  if (token && !config.headers['Authorization']) {
-    config.headers['Authorization'] = `Bearer ${token}`;
+  if (token) {
+    if (config.headers && typeof config.headers.set === 'function') {
+      config.headers.set('Authorization', `Bearer ${token}`);
+    } else {
+      config.headers = config.headers || {};
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
   }
   return config;
 });
