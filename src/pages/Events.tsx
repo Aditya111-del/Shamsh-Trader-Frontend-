@@ -478,6 +478,9 @@ function MosaicCard({ item, onEdit, onDelete }: { item: MosaicItem, onEdit: (e: 
       <img
         src={item.image}
         alt={item.title}
+        onError={(e) => {
+          (e.currentTarget as HTMLImageElement).src = '/images/events/patna-event-1.jpg';
+        }}
         style={{
           position: 'absolute',
           inset: 0,
@@ -683,7 +686,7 @@ export default function Events() {
   const mappedArchives = archiveDbEvents.length > 0 ? archiveDbEvents.map((evt, i) => {
     return {
       ...evt,
-      image: evt.images?.[0] || '/images/research-1.jpg',
+      image: getImageUrl(evt.images?.[0]) || '/images/events/patna-event-1.jpg',
       meta: evt.section || '2025',
       badge: i === 0 || i === 3 ? (evt.section?.split(' ')[0] || '2025') : undefined,
       big: i === 0,
