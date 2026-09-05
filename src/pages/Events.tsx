@@ -173,10 +173,10 @@ const UPCOMING_EVENTS: UpcomingEvent[] = [
     badgeColor: '#22c55e',
     day: '24',
     month: 'AUG',
-    title: 'Patna Trading Conclave 2026',
+    title: 'Agra Shamsh Trader Conclave 4.0',
     description:
       'Live market breakdowns, Indian market F&O and Crypto workshops, and an evening of networking with 300+ traders.',
-    metaLocation: 'Patna, Bihar',
+    metaLocation: 'Agra, Uttar Pradesh',
     metaTime: '10:00 — 19:00 IST',
     status: 'AVAILABLE',
     ticketLink: '#',

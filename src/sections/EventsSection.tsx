@@ -216,7 +216,7 @@ export default function EventsSection() {
             </span>
           </div>
           <h3 style={{ fontSize: 'clamp(26px, 2.4vw, 34px)', fontWeight: 800, letterSpacing: '-0.02em', color: '#fff', margin: '0 0 14px' }}>
-            Patna Trading Conclave 2026
+            Agra Shamsh Trader Conclave 4.0
           </h3>
           <p style={{ fontSize: 15, lineHeight: 1.65, color: 'rgba(255,255,255,0.6)', margin: '0 0 26px', fontWeight: 300, maxWidth: 440 }}>
             A full day of live market breakdowns, Nifty/Bank Nifty & Crypto workshops, and networking with 300+ traders from the
@@ -225,7 +225,7 @@ export default function EventsSection() {
           <div className="flex gap-6 flex-wrap" style={{ marginBottom: 28 }}>
             <span className="inline-flex items-center gap-2" style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)' }}>
               <MapPin className="w-[15px] h-[15px]" style={{ color: '#22c55e' }} />
-              Patna, Bihar
+              Agra, Uttar Pradesh
             </span>
             <span className="inline-flex items-center gap-2" style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)' }}>
               <Clock className="w-[15px] h-[15px]" style={{ color: '#22c55e' }} />
