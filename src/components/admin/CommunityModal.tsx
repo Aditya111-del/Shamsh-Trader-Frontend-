@@ -277,7 +277,7 @@ export default function CommunityModal({ isOpen, onClose, post, onSaved }: Commu
                   />
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-white/60 mb-2">Stats (Comma separated e.g. ♥ 2.4K, ↻ 618)</label>
+                  <label className="block text-sm font-medium text-white/60 mb-2">Stats (Comma separated e.g. 2.4K likes, 618 reposts)</label>
                   <input
                     type="text"
                     value={statsInput}

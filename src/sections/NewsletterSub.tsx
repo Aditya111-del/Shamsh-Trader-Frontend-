@@ -1,6 +1,6 @@
 import { useRef, useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle2, Loader2 } from 'lucide-react';
+import { CheckCircle2, Loader2, Zap, BarChart3, Target } from 'lucide-react';
 import { toast } from 'sonner';
 import api from '../lib/api';
 import { useAuth } from '../contexts/AuthContext';
@@ -172,15 +172,15 @@ export default function NewsletterSub() {
             {/* 3 Value Pillars */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 w-full pt-5 border-t border-white/10 text-left">
               <div className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-white/[0.03] border border-white/5">
-                <span className="text-emerald-400 text-xs">⚡</span>
+                <Zap size={14} className="text-emerald-400 flex-shrink-0" />
                 <span className="text-[11px] text-zinc-300 font-medium">Sunday 08:00 IST</span>
               </div>
               <div className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-white/[0.03] border border-white/5">
-                <span className="text-emerald-400 text-xs">📊</span>
+                <BarChart3 size={14} className="text-emerald-400 flex-shrink-0" />
                 <span className="text-[11px] text-zinc-300 font-medium">F&O & Crypto Alpha</span>
               </div>
               <div className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-white/[0.03] border border-white/5">
-                <span className="text-emerald-400 text-xs">🎯</span>
+                <Target size={14} className="text-emerald-400 flex-shrink-0" />
                 <span className="text-[11px] text-zinc-300 font-medium">Zero Noise, Direct Intel</span>
               </div>
             </div>

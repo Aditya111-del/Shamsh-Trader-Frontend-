@@ -192,7 +192,7 @@ function AssistantBody({ content }: { content: string }) {
 
 function buildFakeReply(_mode: Mode, _userText: string): string {
   return (
-    "🚀 **Genie AI is Launching Soon!**\n\n" +
+    "**Genie AI is Launching Soon!**\n\n" +
     "Thank you for your interest! Our institutional market analysis models, custom Pine Script generator, and risk management systems are currently in final preparation and will be launching very soon.\n\n" +
     "Stay tuned for the official release!"
   );

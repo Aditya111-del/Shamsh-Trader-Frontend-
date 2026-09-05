@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useReveal } from '../../hooks/useReveal';
 import { useTilt } from '../../hooks/useTilt';
 import { type CourseData } from '../../components/admin/CourseModal';
-import { Edit2, Trash2 } from 'lucide-react';
+import { Edit2, Trash2, Check } from 'lucide-react';
 import ActionNoticeModal from '../../components/ui/ActionNoticeModal';
 import { getImageUrl } from '../../lib/api';
 
@@ -140,7 +140,13 @@ function CourseCard({ course, isAdmin, onEdit, onDelete }: { course: CourseData;
                 border: isWaitlisted ? '1px solid rgba(34,197,94,0.4)' : '1px solid rgba(255,255,255,0.1)',
               }}
             >
-              {isWaitlisted ? 'In the Waiting List ✓' : 'Join Waiting List'}
+              {isWaitlisted ? (
+                <span className="inline-flex items-center gap-1.5">
+                  <Check size={13} className="text-emerald-400" /> Waitlisted
+                </span>
+              ) : (
+                'Join Waiting List'
+              )}
             </button>
           </div>
         </span>

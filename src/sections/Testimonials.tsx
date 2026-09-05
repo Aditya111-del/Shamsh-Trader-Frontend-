@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useReveal } from '../hooks/useReveal';
-import { Plus, Edit2, Trash2 } from 'lucide-react';
+import { Plus, Edit2, Trash2, Star } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import TestimonialModal, { type TestimonialData } from '../components/admin/TestimonialModal';
 import api from '../lib/api';
@@ -21,11 +21,9 @@ const INSTAGRAM_ICON = (
 
 function Stars() {
   return (
-    <div className="flex" style={{ gap: 3, marginBottom: 18 }}>
+    <div className="flex" style={{ gap: 4, marginBottom: 18 }}>
       {Array.from({ length: 5 }).map((_, i) => (
-        <span key={i} style={{ color: '#22c55e' }}>
-          ★
-        </span>
+        <Star key={i} size={14} className="fill-[#22c55e] text-[#22c55e]" />
       ))}
     </div>
   );
