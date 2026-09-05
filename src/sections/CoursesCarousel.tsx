@@ -8,6 +8,7 @@ import { useReveal } from '../hooks/useReveal';
 interface Tier {
   name: string;
   price: string;
+  period?: string;
   description: string;
   features: string[];
   cta: string;
@@ -16,31 +17,44 @@ interface Tier {
 
 const TIERS: Tier[] = [
   {
-    name: 'Starter',
-    price: '$49',
-    description: 'Self-paced foundations for the new trader finding their feet.',
-    features: ['Core video curriculum', 'Community Discord access', 'Weekly market recap'],
-    cta: 'Get Started',
+    name: 'Indian Stock Market Foundations',
+    price: '₹3,999',
+    period: 'One-Time',
+    description: 'Complete foundations of Indian Equities, Nifty/Bank Nifty setups, and price action principles.',
+    features: [
+      'NSE Equities & Index Price Action Blueprint',
+      'Nifty 50 & Bank Nifty Opening Range Setups',
+      'Option Buying & Selling Risk Protocols',
+      'Community Discord & Daily Market Briefings',
+    ],
+    cta: 'Enroll Now',
   },
   {
-    name: 'Pro Trader',
-    price: '$149',
-    description: 'The complete system for serious traders ready to go full-time.',
+    name: 'Crypto Futures & Orderflow Mastery',
+    price: '₹5,999',
+    period: 'One-Time',
+    description: 'Master high-probability crypto trades, funding rate exploitation, and advanced liquidation mapping.',
     features: [
-      'Everything in Starter',
-      'Live daily trading room',
-      'Real-time trade breakdowns',
-      'Indian Market F&O & Crypto playbooks',
+      'Delta Exchange & Binance Orderflow Setups',
+      'Liquidation Heatmaps & Cumulative Volume Delta (CVD)',
+      'BTC & Altcoin High-Beta Breakout Systems',
+      'Weekly Live Trading Room & Desk Alerts',
     ],
-    cta: 'Join Pro Trader',
+    cta: 'Enroll Now',
     featured: true,
   },
   {
-    name: 'Elite Mentorship',
-    price: '$599',
-    description: 'One-on-one coaching with a fully personalised trading plan.',
-    features: ['Everything in Pro Trader', 'Weekly 1:1 with Shamsh', 'Personal risk review'],
-    cta: 'Apply Now',
+    name: 'Elite Indian & Crypto Mentorship',
+    price: '₹8,999',
+    period: 'Full Access',
+    description: 'The definitive institutional trading program covering both Indian F&O and high-volatility Crypto markets.',
+    features: [
+      'Both Indian Stock Market & Crypto Curriculums',
+      'Flagship Master Swing Trade Strategy Logic',
+      'Proprietary Strategy Pine Scripts & Backtest Models',
+      'Direct Desk Mentorship with Shamsh & 1:1 Reviews',
+    ],
+    cta: 'Join Mentorship',
   },
 ];
 
@@ -129,7 +143,9 @@ function TierCard({ tier, delay }: { tier: Tier; delay: number }) {
       </div>
       <div className="flex items-baseline gap-1.5" style={{ margin: '18px 0 6px' }}>
         <span style={{ fontSize: 44, fontWeight: 800, color: '#fff', letterSpacing: '-0.03em' }}>{tier.price}</span>
-        <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.4)' }}>/month</span>
+        {tier.period && (
+          <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', marginLeft: 4 }}>/{tier.period}</span>
+        )}
       </div>
       <p
         style={{
@@ -151,8 +167,8 @@ function TierCard({ tier, delay }: { tier: Tier; delay: number }) {
           </div>
         ))}
       </div>
-      <a
-        href="#contact"
+      <Link
+        to="/courses"
         style={{
           marginTop: 'auto',
           textAlign: 'center',
@@ -169,7 +185,7 @@ function TierCard({ tier, delay }: { tier: Tier; delay: number }) {
         }}
       >
         {tier.cta}
-      </a>
+      </Link>
     </div>
   );
 }
