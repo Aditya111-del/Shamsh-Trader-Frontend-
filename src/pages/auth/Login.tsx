@@ -22,7 +22,8 @@ export default function Login() {
   const magnetRef = useMagnetic<HTMLButtonElement>(10);
   const { signInWithGoogle, isLoading: isGoogleLoading } = useGoogleAuth();
 
-  const from = (location.state as { from?: { pathname?: string } } | null)?.from?.pathname || '/dashboard';
+  const stateFrom = (location.state as { from?: { pathname?: string } } | null)?.from?.pathname;
+  const from = !stateFrom || stateFrom === '/dashboard' ? '/' : stateFrom;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

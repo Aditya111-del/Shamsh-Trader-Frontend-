@@ -67,7 +67,7 @@ export function useGoogleAuth() {
       const user = response.data;
       login(user);
       toast.success(`Welcome, ${user.name || 'Trader'}!`);
-      navigate('/dashboard');
+      navigate('/');
     } catch (error: any) {
       const msg = error.response?.data?.message || error.message || 'Google authentication failed';
       toast.error(msg);

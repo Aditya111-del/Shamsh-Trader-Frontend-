@@ -31,7 +31,7 @@ export default function Register() {
       const response = await api.post('/auth/register', { name, email, password });
       toast.success('Account Created. Initializing Session...');
       login(response.data);
-      navigate('/dashboard');
+      navigate('/');
     } catch (error) {
       const message = error instanceof Error ? error.message : undefined;
       const apiMessage = (error as { response?: { data?: { message?: string } } })?.response?.data?.message;
