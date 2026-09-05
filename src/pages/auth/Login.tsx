@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, ArrowRight, Github } from 'lucide-react';
 import { toast } from 'sonner';
 import api from '../../lib/api';
@@ -17,13 +17,9 @@ export default function Login() {
   const [googleHover, setGoogleHover] = useState(false);
   const [githubHover, setGithubHover] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
   const { login } = useAuth();
   const magnetRef = useMagnetic<HTMLButtonElement>(10);
   const { signInWithGoogle, isLoading: isGoogleLoading } = useGoogleAuth();
-
-  const stateFrom = (location.state as { from?: { pathname?: string } } | null)?.from?.pathname;
-  const from = !stateFrom || stateFrom === '/dashboard' ? '/' : stateFrom;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,7 +30,7 @@ export default function Login() {
       toast.success('Session Initialized');
 
       login(response.data);
-      navigate(from, { replace: true });
+      navigate('/', { replace: true });
     } catch (error) {
       const message = error instanceof Error ? error.message : undefined;
       const apiMessage = (error as { response?: { data?: { message?: string } } })?.response?.data?.message;
