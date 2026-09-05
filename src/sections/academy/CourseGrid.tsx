@@ -3,6 +3,7 @@ import { useReveal } from '../../hooks/useReveal';
 import { useTilt } from '../../hooks/useTilt';
 import { type CourseData } from '../../components/admin/CourseModal';
 import { Edit2, Trash2 } from 'lucide-react';
+import ActionNoticeModal from '../../components/ui/ActionNoticeModal';
 
 interface CourseGridProps {
   courses: CourseData[];
@@ -12,6 +13,8 @@ interface CourseGridProps {
 }
 
 function CourseCard({ course, isAdmin, onEdit, onDelete }: { course: CourseData; isAdmin: boolean; onEdit: (c: CourseData) => void; onDelete: (id: string) => void }) {
+  const [isWaitlisted, setIsWaitlisted] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { ref: revealRef, style: revealStyle } = useReveal<HTMLAnchorElement>({ delay: course.delay || 0 });
   const tiltRef = useTilt<HTMLAnchorElement>(3);
   const [hovered, setHovered] = useState(false);
@@ -114,14 +117,40 @@ function CourseCard({ course, isAdmin, onEdit, onDelete }: { course: CourseData;
             {course.description}
           </span>
           <span
-            className="flex justify-between items-center"
+            className="flex justify-between items-center gap-3"
             style={{ marginTop: 'auto', paddingTop: 20 }}
           >
             <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)' }}>{course.meta}</span>
             <span style={{ fontSize: 17, fontWeight: 800, color: '#22c55e' }}>{course.price}</span>
           </span>
+          <div className="mt-4 pt-4 border-t border-white/5">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setIsWaitlisted(true);
+                setIsModalOpen(true);
+              }}
+              className="w-full py-2 px-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
+              style={{
+                background: isWaitlisted ? 'rgba(34,197,94,0.15)' : 'rgba(255,255,255,0.06)',
+                color: isWaitlisted ? '#22c55e' : '#fff',
+                border: isWaitlisted ? '1px solid rgba(34,197,94,0.4)' : '1px solid rgba(255,255,255,0.1)',
+              }}
+            >
+              {isWaitlisted ? 'In the Waiting List ✓' : 'Join Waiting List'}
+            </button>
+          </div>
         </span>
       </a>
+
+      <ActionNoticeModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Joined the Waiting List"
+        type="waiting-list"
+        itemName={course.title}
+        subtitle="You are registered for priority notification as soon as this academy curriculum opens."
+      />
     </div>
   );
 }

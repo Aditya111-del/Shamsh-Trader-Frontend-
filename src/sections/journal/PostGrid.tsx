@@ -38,9 +38,9 @@ const POSTS: Post[] = [
     slug: 'the-3-touch-range-model-fully-mapped',
     image: '/images/capability-4.jpg',
     category: 'Playbooks · Jul 2026',
-    categoryColor: '#22c55e',
+    categoryColor: '#38bdf8',
     title: 'The 3-touch range model, fully mapped',
-    excerpt: 'Entry criteria, invalidation logic and 40 annotated examples across Crypto and Indian Markets.',
+    excerpt: 'Entry criteria, invalidation logic and 40 annotated examples across horizontal liquidity levels.',
     content: 'Full content coming soon...',
     readTime: '8 min read',
   },
@@ -60,45 +60,57 @@ const POSTS: Post[] = [
     _id: 'static-3',
     slug: 'btc-halving-cycles-what-actually-repeats',
     image: '/images/research-2.jpg',
-    category: 'Markets · Jun 2026',
-    categoryColor: '#22c55e',
+    category: 'Crypto · Jun 2026',
+    categoryColor: '#eab308',
     title: 'BTC halving cycles: what actually repeats',
-    excerpt: 'Separating the statistically real patterns from the Twitter mythology, with data.',
+    excerpt: 'Separating the statistically real patterns from the Twitter mythology, with real orderflow data.',
     content: 'Full content coming soon...',
     readTime: '14 min read',
     delay: 180,
   },
   {
     _id: 'static-4',
-    slug: 'post-mortem-the-gold-short-that-paid-for-the-quarter',
-    image: '/images/research-4.jpg',
-    category: 'Trade Review · May 2026',
-    categoryColor: '#22c55e',
-    title: 'Post-mortem: the gold short that paid for the quarter',
-    excerpt: 'Full annotated journal entry — thesis, execution, management, and the one mistake.',
-    content: 'Full content coming soon...',
-    readTime: '9 min read',
-  },
-  {
-    _id: 'static-5',
     slug: 'reading-india-vix-nifty-like-a-market-maker',
     image: '/images/capability-2.jpg',
-    category: 'Markets · May 2026',
+    category: 'Indian Markets · May 2026',
     categoryColor: '#22c55e',
     title: 'Reading India VIX & Nifty like a market maker',
-    excerpt: "Volatility and index momentum drive Indian market swings. Here's the weekly framework.",
+    excerpt: "Volatility and index momentum drive Indian market swings. Here's the institutional weekly framework.",
     content: 'Full content coming soon...',
     readTime: '7 min read',
     delay: 90,
   },
   {
+    _id: 'static-5',
+    slug: 'ethereum-altcoin-liquidity-cycles',
+    image: '/images/research-4.jpg',
+    category: 'Crypto · May 2026',
+    categoryColor: '#eab308',
+    title: 'Ethereum & Altcoin liquidity cycles: structural positioning',
+    excerpt: 'Understanding rotational capital flow from Bitcoin dominance into Layer-1 ecosystems.',
+    content: 'Full content coming soon...',
+    readTime: '10 min read',
+  },
+  {
     _id: 'static-6',
+    slug: 'bank-nifty-options-orb-strategy',
+    image: '/images/capability-1.jpg',
+    category: 'Indian Markets · Apr 2026',
+    categoryColor: '#22c55e',
+    title: 'Bank Nifty weekly options: opening range breakout rules',
+    excerpt: 'Precise execution triggers, delta neutrality and stop-loss placement for index day-traders.',
+    content: 'Full content coming soon...',
+    readTime: '9 min read',
+    delay: 90,
+  },
+  {
+    _id: 'static-7',
     slug: 'the-90-day-journal-protocol',
     image: '/images/research-1.jpg',
     category: 'Psychology · Apr 2026',
     categoryColor: '#c084fc',
-    title: 'The 90-day journal protocol',
-    excerpt: 'The exact review template our funded traders use — download inside.',
+    title: 'The 90-day systematic journal protocol',
+    excerpt: 'The exact quantitative review template professional prop traders use daily.',
     content: 'Full content coming soon...',
     readTime: '5 min read',
     delay: 180,
@@ -268,10 +280,16 @@ export default function PostGrid() {
     }
   };
 
-  let filteredDbPosts = dbPosts;
-  if (activeCategory !== 'All') {
-    filteredDbPosts = dbPosts.filter(post => post.category?.toLowerCase().includes(activeCategory.toLowerCase()));
-  }
+  const matchesCategory = (catStr: string = '') => {
+    if (activeCategory === 'All') return true;
+    const lower = catStr.toLowerCase();
+    const activeLower = activeCategory.toLowerCase();
+    if (activeLower === 'indian markets') return lower.includes('indian');
+    if (activeLower === 'playbooks') return lower.includes('playbook');
+    return lower.includes(activeLower);
+  };
+
+  let filteredDbPosts = dbPosts.filter(post => matchesCategory(post.category));
 
   let mappedPosts = filteredDbPosts.length > 0 ? filteredDbPosts.map((post, i) => {
     // Generate relative time for "2 days ago" logic
@@ -293,7 +311,7 @@ export default function PostGrid() {
       delay: (i % 3) * 90,
       _id: post._id,
     };
-  }) : POSTS.filter(post => activeCategory === 'All' || post.category.toLowerCase().includes(activeCategory.toLowerCase()));
+  }) : POSTS.filter(post => matchesCategory(post.category));
 
   return (
     <section className="relative mx-auto" style={{ maxWidth: 1200, padding: '0 40px 110px' }}>

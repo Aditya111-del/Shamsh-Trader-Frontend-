@@ -1,9 +1,12 @@
-import { Clock, ArrowRight, Check, Edit2, Trash2 } from 'lucide-react';
+import { useState } from 'react';
+import { Clock, ArrowRight, Check, Edit2, Trash2, CheckCircle2 } from 'lucide-react';
+import { toast } from 'sonner';
 import { useReveal } from '../../hooks/useReveal';
 import { useTilt } from '../../hooks/useTilt';
 import { useMagnetic } from '../../hooks/useMagnetic';
 import { useParallax } from '../../hooks/useParallax';
 import { type CourseData } from '../../components/admin/CourseModal';
+import ActionNoticeModal from '../../components/ui/ActionNoticeModal';
 
 interface FlagshipProgramProps {
   course?: CourseData;
@@ -13,9 +16,11 @@ interface FlagshipProgramProps {
 }
 
 export default function FlagshipProgram({ course, isAdmin, onEdit, onDelete }: FlagshipProgramProps) {
+  const [isWaitlisted, setIsWaitlisted] = useState(false);
+  const [isNoticeOpen, setIsNoticeOpen] = useState(false);
   const { ref: revealRef, style: revealStyle } = useReveal<HTMLDivElement>({ y: 40, duration: 1 });
   const tiltRef = useTilt<HTMLDivElement>(2);
-  const magnetRef = useMagnetic<HTMLAnchorElement>(14);
+  const magnetRef = useMagnetic<HTMLButtonElement>(14);
   const imgParallaxRef = useParallax<HTMLDivElement>(0.08);
 
   if (!course) return null;
@@ -179,24 +184,37 @@ export default function FlagshipProgram({ course, isAdmin, onEdit, onDelete }: F
               </div>
             )}
             <div className="flex items-center gap-[22px] flex-wrap" style={{ marginTop: 'auto' }}>
-              <a
+              <button
                 ref={magnetRef}
-                href={course.externalLink || '#'}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-[10px]"
+                onClick={() => {
+                  setIsWaitlisted(true);
+                  setIsNoticeOpen(true);
+                  toast.success(`Joined the Waiting List for ${course.title}!`);
+                }}
+                className="inline-flex items-center gap-[10px] cursor-pointer"
                 style={{
-                  background: 'linear-gradient(90deg,#84cc16,#22c55e)',
-                  color: '#000',
+                  background: isWaitlisted ? 'rgba(34,197,94,0.15)' : 'linear-gradient(90deg,#84cc16,#22c55e)',
+                  color: isWaitlisted ? '#22c55e' : '#000',
+                  border: isWaitlisted ? '1px solid rgba(34,197,94,0.5)' : 'none',
                   padding: '14px 28px',
                   borderRadius: 999,
                   fontWeight: 700,
                   fontSize: 15,
-                  boxShadow: '0 0 30px rgba(34,197,94,0.3)',
+                  boxShadow: isWaitlisted ? '0 0 20px rgba(34,197,94,0.2)' : '0 0 30px rgba(34,197,94,0.3)',
+                  transition: 'all .3s ease',
                 }}
               >
-                Enroll Now <ArrowRight size={15} color="#000" strokeWidth={3} />
-              </a>
+                {isWaitlisted ? (
+                  <>
+                    <CheckCircle2 size={18} color="#22c55e" strokeWidth={2.5} />
+                    In the Waiting List
+                  </>
+                ) : (
+                  <>
+                    Enroll Now <ArrowRight size={15} color="#000" strokeWidth={3} />
+                  </>
+                )}
+              </button>
               <span className="flex flex-col">
                 <span style={{ fontSize: 24, fontWeight: 800, color: '#fff' }}>{course.price}</span>
               </span>
@@ -204,6 +222,15 @@ export default function FlagshipProgram({ course, isAdmin, onEdit, onDelete }: F
           </div>
         </div>
       </div>
+
+      <ActionNoticeModal
+        isOpen={isNoticeOpen}
+        onClose={() => setIsNoticeOpen(false)}
+        title="Joined the Waiting List"
+        type="waiting-list"
+        itemName={course.title}
+        subtitle="You are now on the priority reservation list for Master Swing Trade. You'll receive enrollment access as soon as cohorts open."
+      />
     </section>
   );
 }

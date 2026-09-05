@@ -3,6 +3,7 @@ import { useReveal } from '../../hooks/useReveal';
 import { useDrawPath } from '../../hooks/useDrawPath';
 import { useTilt } from '../../hooks/useTilt';
 import { type BotData } from '../../components/admin/BotModal';
+import ActionNoticeModal from '../../components/ui/ActionNoticeModal';
 
 interface BotCardProps {
   bot: BotData;
@@ -10,6 +11,7 @@ interface BotCardProps {
 }
 
 export default function BotCard({ bot, delay = 0 }: BotCardProps) {
+  const [isNoticeOpen, setIsNoticeOpen] = useState(false);
   const { ref: revealRef, style: revealStyle } = useReveal<HTMLDivElement>({ delay, y: 40 });
   const tiltRef = useTilt<HTMLDivElement>(3);
   const pathRef = useDrawPath(1.6);
@@ -102,12 +104,11 @@ export default function BotCard({ bot, delay = 0 }: BotCardProps) {
           {bot.price}
           <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', fontWeight: 400 }}>/mo</span>
         </span>
-        <a
-          href={bot.fileUrl}
-          target="_blank"
-          rel="noreferrer"
+        <button
+          onClick={() => setIsNoticeOpen(true)}
           onMouseEnter={() => setDeployHover(true)}
           onMouseLeave={() => setDeployHover(false)}
+          className="cursor-pointer"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -122,9 +123,18 @@ export default function BotCard({ bot, delay = 0 }: BotCardProps) {
             transition: 'background .3s',
           }}
         >
-          Deploy
-        </a>
+          Download / Deploy
+        </button>
       </div>
+
+      <ActionNoticeModal
+        isOpen={isNoticeOpen}
+        onClose={() => setIsNoticeOpen(false)}
+        title="Bot Deployment Coming Soon"
+        type="coming-soon"
+        itemName={bot.name}
+        subtitle="Automated API webhook connector and broker execution pipelines are currently undergoing security verification. Join the waiting list to get early access."
+      />
     </div>
   );
 }

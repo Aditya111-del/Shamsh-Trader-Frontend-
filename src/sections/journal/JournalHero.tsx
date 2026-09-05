@@ -1,7 +1,7 @@
 import { useParallax } from '../../hooks/useParallax';
 import { useSearchParams } from 'react-router-dom';
 
-const CATEGORIES = ['All', 'Markets', 'Psychology', 'Playbooks'];
+const CATEGORIES = ['All', 'Crypto', 'Indian Markets', 'Playbooks', 'Psychology'];
 
 export default function JournalHero() {
   const glowRef = useParallax<HTMLDivElement>(0.22);

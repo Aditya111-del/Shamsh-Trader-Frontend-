@@ -1,4 +1,4 @@
-import { type CSSProperties } from 'react';
+import { useState, type CSSProperties } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { useReveal } from '../../hooks/useReveal';
 import { useDrawPath } from '../../hooks/useDrawPath';
@@ -6,12 +6,14 @@ import { useTilt } from '../../hooks/useTilt';
 import { useCountUp } from '../../hooks/useCountUp';
 import { useMagnetic } from '../../hooks/useMagnetic';
 import { type BotData } from '../../components/admin/BotModal';
+import ActionNoticeModal from '../../components/ui/ActionNoticeModal';
 
 export default function FlagshipBot({ bot }: { bot?: BotData }) {
+  const [isNoticeOpen, setIsNoticeOpen] = useState(false);
   const { ref: revealRef, style: revealStyle } = useReveal<HTMLDivElement>({ y: 40, duration: 1 });
   const tiltRef = useTilt<HTMLDivElement>(2);
   const pathRef = useDrawPath(2.2);
-  const magnetRef = useMagnetic<HTMLAnchorElement>(14);
+  const magnetRef = useMagnetic<HTMLButtonElement>(14);
   
   // Extract numeric part from monthly string, e.g. "+9.4%" -> 9.4
   const monthlyNum = bot?.monthly ? parseFloat(bot.monthly.replace(/[^0-9.-]+/g,"")) : 0;
@@ -137,11 +139,10 @@ export default function FlagshipBot({ bot }: { bot?: BotData }) {
         </div>
 
         <div className="flex items-center flex-wrap" style={{ marginTop: 'auto', gap: 20 }}>
-          <a
+          <button
             ref={magnetRef}
-            href={bot.fileUrl}
-            target="_blank"
-            rel="noreferrer"
+            onClick={() => setIsNoticeOpen(true)}
+            className="cursor-pointer"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -156,7 +157,7 @@ export default function FlagshipBot({ bot }: { bot?: BotData }) {
             }}
           >
             Deploy {bot.name.split(' ')[0]} <ArrowRight size={15} strokeWidth={3} color="#000" />
-          </a>
+          </button>
           <span className="flex flex-col">
             <span style={{ fontSize: 22, fontWeight: 800, color: '#fff' }}>
               {bot.price}<span style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', fontWeight: 400 }}>/mo</span>
@@ -164,6 +165,15 @@ export default function FlagshipBot({ bot }: { bot?: BotData }) {
           </span>
         </div>
       </div>
+
+      <ActionNoticeModal
+        isOpen={isNoticeOpen}
+        onClose={() => setIsNoticeOpen(false)}
+        title="Deploy Flagship Bot Coming Soon"
+        type="coming-soon"
+        itemName={bot.name}
+        subtitle="Broker execution integration and automated high-frequency order routing are in final phase testing. Join the waiting list to get early alpha access."
+      />
 
       <div className="relative flex flex-col" style={{ padding: '0 44px 44px' }}>
         <div className="flex justify-between items-baseline" style={{ marginBottom: 6 }}>
