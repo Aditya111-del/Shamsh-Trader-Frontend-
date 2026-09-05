@@ -3,7 +3,7 @@ import { useReveal } from '../../hooks/useReveal';
 import { Plus, Edit2, Trash2 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import CommunityModal, { type CommunityPostData } from '../../components/admin/CommunityModal';
-import api from '../../lib/api';
+import api, { getImageUrl } from '../../lib/api';
 import { toast } from 'sonner';
 
 const YOUTUBE_ICON = (
@@ -47,8 +47,7 @@ function PostCard({
   const [imgHovered, setImgHovered] = useState(false);
 
   const config = PLATFORM_CONFIG[post.platform] || { color: '#fff', icon: null };
-  const backendUrl = import.meta.env.VITE_API_URL?.replace('/api/v1', '') || '';
-  const imageUrl = post.image?.startsWith('http') ? post.image : `${backendUrl}${post.image}`;
+  const imageUrl = getImageUrl(post.image) || '/images/capability-3.jpg';
 
   return (
     <div className="relative group">
@@ -109,6 +108,8 @@ function PostCard({
                 const target = e.target as HTMLImageElement;
                 if (target.src.includes('maxresdefault.jpg')) {
                   target.src = target.src.replace('maxresdefault.jpg', 'hqdefault.jpg');
+                } else {
+                  target.src = '/images/capability-3.jpg';
                 }
               }}
               onMouseEnter={() => setImgHovered(true)}

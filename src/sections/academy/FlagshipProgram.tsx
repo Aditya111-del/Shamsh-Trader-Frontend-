@@ -7,6 +7,7 @@ import { useMagnetic } from '../../hooks/useMagnetic';
 import { useParallax } from '../../hooks/useParallax';
 import { type CourseData } from '../../components/admin/CourseModal';
 import ActionNoticeModal from '../../components/ui/ActionNoticeModal';
+import { getImageUrl } from '../../lib/api';
 
 interface FlagshipProgramProps {
   course?: CourseData;
@@ -25,8 +26,7 @@ export default function FlagshipProgram({ course, isAdmin, onEdit, onDelete }: F
 
   if (!course) return null;
 
-  const backendUrl = import.meta.env.VITE_API_URL?.replace('/api/v1', '') || '';
-  const imageUrl = course.image?.startsWith('http') ? course.image : `${backendUrl}${course.image}`;
+  const imageUrl = getImageUrl(course.image) || '/images/capability-2.jpg';
 
   return (
     <section className="relative mx-auto px-[18px] md:px-10" style={{ maxWidth: 1200, paddingBottom: 80 }}>
@@ -71,6 +71,9 @@ export default function FlagshipProgram({ course, isAdmin, onEdit, onDelete }: F
                 <img
                   src={imageUrl}
                   alt={course.title}
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).src = '/images/capability-2.jpg';
+                  }}
                   style={{
                     width: '100%',
                     height: '100%',

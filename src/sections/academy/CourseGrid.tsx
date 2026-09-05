@@ -4,6 +4,7 @@ import { useTilt } from '../../hooks/useTilt';
 import { type CourseData } from '../../components/admin/CourseModal';
 import { Edit2, Trash2 } from 'lucide-react';
 import ActionNoticeModal from '../../components/ui/ActionNoticeModal';
+import { getImageUrl } from '../../lib/api';
 
 interface CourseGridProps {
   courses: CourseData[];
@@ -19,8 +20,7 @@ function CourseCard({ course, isAdmin, onEdit, onDelete }: { course: CourseData;
   const tiltRef = useTilt<HTMLAnchorElement>(3);
   const [hovered, setHovered] = useState(false);
 
-  const backendUrl = import.meta.env.VITE_API_URL?.replace('/api/v1', '') || '';
-  const imageUrl = course.image?.startsWith('http') ? course.image : `${backendUrl}${course.image}`;
+  const imageUrl = getImageUrl(course.image) || '/images/capability-1.jpg';
 
   return (
     <div className="relative group">
@@ -65,6 +65,9 @@ function CourseCard({ course, isAdmin, onEdit, onDelete }: { course: CourseData;
           <img
             src={imageUrl}
             alt={course.title}
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).src = '/images/capability-1.jpg';
+            }}
             style={{
               width: '100%',
               height: '100%',

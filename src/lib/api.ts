@@ -33,13 +33,14 @@ api.interceptors.response.use(
 
 export const getImageUrl = (url?: string) => {
   if (!url) return '';
-  if (url.startsWith('http')) return url;
-  if (url.startsWith('/uploads/')) {
+  if (url.startsWith('http://') || url.startsWith('https://')) return url;
+  if (url.startsWith('/uploads/') || url.startsWith('uploads/')) {
     const apiUrl = import.meta.env.VITE_API_URL || '';
     const baseUrl = apiUrl.replace(/\/api(\/v1)?\/?$/, '');
-    return `${baseUrl}${url}`;
+    const clean = url.startsWith('/') ? url : `/${url}`;
+    return `${baseUrl}${clean}`;
   }
-  return url;
+  return url.startsWith('/') ? url : `/${url}`;
 };
 
 export default api;
