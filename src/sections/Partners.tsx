@@ -6,13 +6,15 @@ import api from '../lib/api';
 import SettingsModal from '../components/admin/SettingsModal';
 
 const DEFAULT_BRANDS = [
-  'Binance',
-  'TradingView',
-  'MetaTrader 5',
-  'Bybit',
-  'OKX',
-  'Coinbase',
-  'Bitget',
+  'Delta exchange',
+  'Mudrex',
+  'FYERS',
+  'COINDCX',
+  'COINSWITCH',
+  'SPIDER',
+  'SUNCRYPTO',
+  'SAHI',
+  'FIRST DEMAT 5 PAISA',
 ];
 
 export default function Partners() {
