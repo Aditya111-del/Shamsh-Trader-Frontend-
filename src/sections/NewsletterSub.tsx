@@ -130,27 +130,68 @@ export default function NewsletterSub() {
         </p>
         {isSubscribed ? (
           <div
-            className="flex flex-col items-center justify-center p-8 rounded-3xl w-full"
+            className="flex flex-col items-center justify-center p-6 sm:p-9 rounded-2xl sm:rounded-3xl w-full relative overflow-hidden"
             style={{
-              maxWidth: 560,
-              background: 'linear-gradient(135deg, rgba(34,197,94,0.12), rgba(255,255,255,0.03))',
-              border: '1px solid rgba(34,197,94,0.4)',
-              boxShadow: '0 0 50px rgba(34,197,94,0.18)',
+              maxWidth: 580,
+              background: 'linear-gradient(180deg, rgba(24,24,27,0.95), rgba(9,9,11,0.98))',
+              border: '1px solid rgba(34,197,94,0.35)',
+              boxShadow: '0 25px 60px -15px rgba(0,0,0,0.8), 0 0 45px rgba(34,197,94,0.16), inset 0 1px 0 rgba(255,255,255,0.08)',
+              backdropFilter: 'blur(20px)',
               animation: 'fadeSlideUp .5s ease forwards',
             }}
           >
-            <div className="w-12 h-12 rounded-full bg-green-500/20 border border-green-500/40 flex items-center justify-center text-green-400 mb-3 shadow-[0_0_20px_rgba(34,197,94,0.4)]">
-              <CheckCircle2 size={24} />
+            {/* Top ambient highlight line */}
+            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-400/60 to-transparent" />
+
+            {/* Live Indicator Pill */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[11px] font-semibold tracking-wider text-emerald-400 uppercase mb-5">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              Dispatch Active · Verified
             </div>
-            <div className="text-xl sm:text-2xl font-extrabold text-white tracking-tight mb-2">
-              Status: <span className="text-green-400">Subscribed</span>
-            </div>
-            <p className="text-sm text-zinc-300 font-medium max-w-md mx-auto leading-relaxed mb-4">
-              You will receive all the market reports, high-probability watchlists, and research deep dives directly in your inbox.
+
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2.5">
+              You're on the institutional desk.
+            </h3>
+
+            <p className="text-sm text-zinc-400 font-light max-w-md mx-auto leading-relaxed mb-6">
+              You're officially subscribed. High-probability Nifty/Crypto watchlists, live trade setups, and weekly market breakdowns will land directly in your inbox.
             </p>
-            <span className="text-xs text-zinc-500 font-mono">
-              Active address: <span className="text-zinc-300 font-semibold">{email}</span>
-            </span>
+
+            {/* Email Terminal Badge */}
+            <div className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-black/60 border border-white/10 text-xs sm:text-sm text-zinc-200 font-mono shadow-inner mb-6 max-w-full">
+              <CheckCircle2 size={16} className="text-emerald-400 flex-shrink-0" />
+              <span className="truncate max-w-[220px] sm:max-w-[280px]">{email || 'your-email@domain.com'}</span>
+              <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 ml-1 flex-shrink-0">
+                Subscribed
+              </span>
+            </div>
+
+            {/* 3 Value Pillars */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 w-full pt-5 border-t border-white/10 text-left">
+              <div className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+                <span className="text-emerald-400 text-xs">⚡</span>
+                <span className="text-[11px] text-zinc-300 font-medium">Sunday 08:00 IST</span>
+              </div>
+              <div className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+                <span className="text-emerald-400 text-xs">📊</span>
+                <span className="text-[11px] text-zinc-300 font-medium">F&O & Crypto Alpha</span>
+              </div>
+              <div className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+                <span className="text-emerald-400 text-xs">🎯</span>
+                <span className="text-[11px] text-zinc-300 font-medium">Zero Noise, Direct Intel</span>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => { setIsSubscribed(false); setEmail(''); }}
+              className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors mt-5 underline underline-offset-4 decoration-zinc-700 hover:decoration-zinc-400 cursor-pointer"
+            >
+              Subscribe another email address →
+            </button>
           </div>
         ) : (
           <form
