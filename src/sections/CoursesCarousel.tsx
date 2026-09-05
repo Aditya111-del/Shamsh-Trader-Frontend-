@@ -1,5 +1,6 @@
 import { useState, type Ref } from 'react';
 import { Link } from 'react-router-dom';
+import { CoverFlowCarousel } from '../components/ui/CoverFlowCarousel';
 import { Settings } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useReveal } from '../hooks/useReveal';
@@ -75,84 +76,77 @@ function CheckIcon() {
   );
 }
 
-function TierCard({ tier, delay }: { tier: Tier; delay: number }) {
-  const reveal = useReveal<HTMLDivElement>({ delay, y: 40 });
+function TierCard({ tier }: { tier: Tier }) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <div
-      ref={reveal.ref}
-      style={reveal.style}
-      className={`h-full transition-transform duration-300 ${tier.featured ? 'lg:-translate-y-4' : ''}`}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className={`flex flex-col relative w-full h-full p-6 sm:p-8 rounded-[24px] backdrop-blur-md transition-all duration-300 ${
+        tier.featured
+          ? 'border border-[#22c55e]/60 bg-gradient-to-b from-[#18181b] to-[#09090b]'
+          : 'border border-white/10 hover:border-white/20 bg-gradient-to-b from-[#161618] to-[#09090b]'
+      }`}
+      style={{
+        minHeight: 510,
+        boxShadow: tier.featured
+          ? hovered
+            ? '0 0 60px rgba(34,197,94,0.32)'
+            : '0 0 35px rgba(34,197,94,0.18), inset 0 1px 0 rgba(255,255,255,0.06)'
+          : hovered
+          ? '0 0 30px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.05)'
+          : '0 0 15px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)',
+      }}
     >
+      {tier.featured && (
+        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[11px] font-bold tracking-widest uppercase text-black bg-gradient-to-r from-[#84cc16] to-[#22c55e] shadow-[0_0_20px_rgba(34,197,94,0.5)] z-10 whitespace-nowrap">
+          Most Popular
+        </div>
+      )}
+
       <div
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        className={`flex flex-col relative w-full h-full p-7 sm:p-9 rounded-[24px] backdrop-blur-md transition-all duration-300 ${
-          tier.featured
-            ? 'border border-[#22c55e]/60 bg-gradient-to-b from-[#18181b] to-[#09090b]'
-            : 'border border-white/10 hover:border-white/20 bg-gradient-to-b from-[#161618] to-[#09090b]'
+        className={`text-xs tracking-widest uppercase font-semibold mb-2 ${
+          tier.featured ? 'text-[#22c55e]' : 'text-zinc-400'
         }`}
-        style={{
-          boxShadow: tier.featured
-            ? hovered
-              ? '0 0 60px rgba(34,197,94,0.32)'
-              : '0 0 35px rgba(34,197,94,0.18), inset 0 1px 0 rgba(255,255,255,0.06)'
-            : hovered
-            ? '0 0 30px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.05)'
-            : '0 0 15px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)',
-          transform: hovered ? 'translateY(-6px)' : 'none',
-        }}
       >
-        {tier.featured && (
-          <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[11px] font-bold tracking-widest uppercase text-black bg-gradient-to-r from-[#84cc16] to-[#22c55e] shadow-[0_0_20px_rgba(34,197,94,0.5)] z-10 whitespace-nowrap">
-            Most Popular
-          </div>
-        )}
-
-        <div
-          className={`text-xs tracking-widest uppercase font-semibold mb-2 ${
-            tier.featured ? 'text-[#22c55e]' : 'text-zinc-400'
-          }`}
-        >
-          {tier.name}
-        </div>
-
-        <div className="flex items-baseline gap-1.5 my-3">
-          <span className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-            {tier.price}
-          </span>
-          {tier.period && (
-            <span className="text-sm text-zinc-400 ml-1">/{tier.period}</span>
-          )}
-        </div>
-
-        <p className="text-sm text-zinc-400 font-light leading-relaxed mb-6">
-          {tier.description}
-        </p>
-
-        <div className="flex flex-col gap-3.5 mb-8">
-          {tier.features.map((f) => (
-            <div key={f} className="flex items-start gap-2.5">
-              <CheckIcon />
-              <span className={`text-sm ${tier.featured ? 'text-zinc-200' : 'text-zinc-300'}`}>
-                {f}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        <Link
-          to="/courses"
-          className={`mt-auto text-center py-3.5 px-4 rounded-xl font-semibold text-sm transition-all duration-200 block ${
-            tier.featured
-              ? 'bg-gradient-to-r from-[#84cc16] to-[#22c55e] text-black font-bold shadow-[0_0_24px_rgba(34,197,94,0.35)] hover:shadow-[0_0_35px_rgba(34,197,94,0.55)] hover:brightness-105'
-              : 'bg-white/[0.07] hover:bg-white/[0.14] text-white border border-white/10 hover:border-white/20'
-          }`}
-        >
-          {tier.cta}
-        </Link>
+        {tier.name}
       </div>
+
+      <div className="flex items-baseline gap-1.5 my-3">
+        <span className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+          {tier.price}
+        </span>
+        {tier.period && (
+          <span className="text-sm text-zinc-400 ml-1">/{tier.period}</span>
+        )}
+      </div>
+
+      <p className="text-sm text-zinc-400 font-light leading-relaxed mb-6">
+        {tier.description}
+      </p>
+
+      <div className="flex flex-col gap-3.5 mb-8">
+        {tier.features.map((f) => (
+          <div key={f} className="flex items-start gap-2.5">
+            <CheckIcon />
+            <span className={`text-sm ${tier.featured ? 'text-zinc-200' : 'text-zinc-300'}`}>
+              {f}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <Link
+        to="/courses"
+        className={`mt-auto text-center py-3.5 px-4 rounded-xl font-semibold text-sm transition-all duration-200 block ${
+          tier.featured
+            ? 'bg-gradient-to-r from-[#84cc16] to-[#22c55e] text-black font-bold shadow-[0_0_24px_rgba(34,197,94,0.35)] hover:shadow-[0_0_35px_rgba(34,197,94,0.55)] hover:brightness-105'
+            : 'bg-white/[0.07] hover:bg-white/[0.14] text-white border border-white/10 hover:border-white/20'
+        }`}
+      >
+        {tier.cta}
+      </Link>
     </div>
   );
 }
@@ -165,8 +159,8 @@ export default function CoursesCarousel() {
   const link = useReveal({ delay: 200 });
 
   return (
-    <section id="programs" className="relative mx-auto" style={{ maxWidth: 1240, paddingTop: 100, paddingBottom: 100 }}>
-      <div className="text-center relative px-5 sm:px-10" style={{ marginBottom: 50 }}>
+    <section id="programs" className="relative mx-auto overflow-visible" style={{ maxWidth: 1240, paddingTop: 100, paddingBottom: 100 }}>
+      <div className="text-center relative px-5 sm:px-10" style={{ marginBottom: 30 }}>
         {isAdmin && (
           <a
             href="#"
@@ -251,12 +245,20 @@ export default function CoursesCarousel() {
           </svg>
         </Link>
       </div>
-      <div className="w-full mt-10 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch max-w-[1200px] mx-auto">
-          {TIERS.map((tier, idx) => (
-            <TierCard key={tier.name} tier={tier} delay={idx * 100} />
+      <div className="w-full mt-6">
+        <CoverFlowCarousel
+          initialIndex={1}
+          mobileItemWidth={300}
+          desktopItemWidth={375}
+          mobileHeight={550}
+          desktopHeight={560}
+          mobileSpacing={40}
+          desktopSpacing={175}
+        >
+          {TIERS.map((tier) => (
+            <TierCard key={tier.name} tier={tier} />
           ))}
-        </div>
+        </CoverFlowCarousel>
       </div>
     </section>
   );
