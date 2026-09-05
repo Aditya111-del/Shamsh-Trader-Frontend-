@@ -7,7 +7,6 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useMagnetic } from '../../hooks/useMagnetic';
 import ThreeBg from '../../components/ThreeBg';
 import { useGoogleAuth } from '../../hooks/useGoogleAuth';
-import GoogleAuthModal from '../../components/GoogleAuthModal';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -21,13 +20,7 @@ export default function Login() {
   const location = useLocation();
   const { login } = useAuth();
   const magnetRef = useMagnetic<HTMLButtonElement>(10);
-  const {
-    signInWithGoogle,
-    loginWithDemoGoogle,
-    isLoading: isGoogleLoading,
-    showConfigModal,
-    setShowConfigModal,
-  } = useGoogleAuth();
+  const { signInWithGoogle, isLoading: isGoogleLoading } = useGoogleAuth();
 
   const from = (location.state as { from?: { pathname?: string } } | null)?.from?.pathname || '/dashboard';
 
@@ -267,13 +260,6 @@ export default function Login() {
           <a href="#" style={{ color: 'rgba(255,255,255,0.4)' }}>Terms</a>
         </span>
       </div>
-
-      <GoogleAuthModal
-        isOpen={showConfigModal}
-        onClose={() => setShowConfigModal(false)}
-        onDemoLogin={loginWithDemoGoogle}
-        isLoading={isGoogleLoading}
-      />
 
       {/* VISUAL SIDE (Three.js wave) */}
       <div
