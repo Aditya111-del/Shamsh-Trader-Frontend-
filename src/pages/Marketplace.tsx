@@ -9,7 +9,7 @@ import { useAuth } from '../contexts/AuthContext';
 import api from '../lib/api';
 import { toast } from 'sonner';
 
-const FILTERS = ['All', 'Forex', 'Crypto', 'Indices'] as const;
+const FILTERS = ['All', 'Crypto', 'Indian Market', 'Indices'] as const;
 
 function FilterPill({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
   const [hovered, setHovered] = useState(false);

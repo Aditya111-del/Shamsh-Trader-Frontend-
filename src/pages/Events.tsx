@@ -59,7 +59,7 @@ const MOSAIC_ITEMS: MosaicItem[] = [
   {
     _id: 'static-archive-4',
     image: '/images/research-3.jpg',
-    title: 'Funded Trader Awards',
+    title: 'Indian Market Traders Summit',
     meta: '2024 · Bangalore',
     badge: '2024',
     tall: true,
@@ -175,7 +175,7 @@ const UPCOMING_EVENTS: UpcomingEvent[] = [
     month: 'AUG',
     title: 'Mumbai Trading Summit 2026',
     description:
-      'Live market breakdowns, prop-firm workshops and an evening of networking with 300+ traders.',
+      'Live market breakdowns, Indian market F&O and Crypto workshops, and an evening of networking with 300+ traders.',
     metaLocation: 'Grand Hyatt, Mumbai',
     metaTime: '10:00 — 19:00 IST',
     status: 'AVAILABLE',

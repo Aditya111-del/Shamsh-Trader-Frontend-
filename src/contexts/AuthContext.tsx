@@ -7,6 +7,9 @@ export interface User {
   email: string;
   role: 'USER' | 'PREMIUM' | 'ADMIN';
   token?: string; // JWT token returned on login (for Bearer fallback)
+  profileImage?: string;
+  isVerified?: boolean;
+  authProvider?: string;
 }
 
 interface AuthContextType {

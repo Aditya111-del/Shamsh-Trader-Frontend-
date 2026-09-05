@@ -31,7 +31,7 @@ const GLIMPSE_EVENTS = [
     ]
   },
   {
-    name: "Funded Trader Awards",
+    name: "Indian Market Traders Summit",
     images: [
       "/images/research-3.jpg",
       "/images/capability-1.jpg",

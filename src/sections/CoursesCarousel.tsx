@@ -30,7 +30,7 @@ const TIERS: Tier[] = [
       'Everything in Starter',
       'Live daily trading room',
       'Real-time trade breakdowns',
-      'Prop firm prep & playbooks',
+      'Indian Market F&O & Crypto playbooks',
     ],
     cta: 'Join Pro Trader',
     featured: true,
@@ -245,7 +245,7 @@ export default function CoursesCarousel() {
             fontWeight: 300,
           }}
         >
-          From your first funded challenge to one-on-one mentorship. Every path is built on the same disciplined
+          From your first trade in Nifty & Crypto to one-on-one mentorship. Every path is built on the same disciplined
           framework.
         </p>
         <Link

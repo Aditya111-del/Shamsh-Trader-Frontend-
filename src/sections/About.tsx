@@ -135,7 +135,7 @@ export default function About() {
               fontWeight: 300,
             }}
           >
-            For over five years I've traded forex, crypto and indices through every kind of market — euphoria,
+            For over five years I've traded crypto and the Indian stock market (Nifty, Bank Nifty & Equities) through every kind of market — euphoria,
             panic, and everything between. What separates the traders who last from the ones who blow up isn't
             a secret indicator. It's process, patience, and ruthless risk control.
           </p>
@@ -158,7 +158,7 @@ export default function About() {
           <div ref={stats.ref} className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6" style={stats.style}>
             {[
               { value: '$40M+', label: 'Volume Traded' },
-              { value: '3', label: 'Prop Firm Payouts' },
+              { value: '10K+', label: 'Active Traders' },
               { value: '24/7', label: 'Community' },
             ].map((s, i) => (
               <div

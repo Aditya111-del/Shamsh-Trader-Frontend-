@@ -92,7 +92,7 @@ export const capabilityDetailConfig: CapabilityDetailConfig = {
         "Our market analysis framework combines technical precision with macro awareness. We don't chase indicators — we understand market structure, identify key support and resistance zones, and wait for high-confluence setups that offer favorable risk-reward ratios.",
         "Every trade begins with a thorough read of price action. We analyze multi-timeframe trends, volume profiles, and market sentiment to build a complete picture before entering any position. This systematic approach removes guesswork and replaces it with conviction.",
         "The markets reward preparation. Our analysis process includes pre-market briefings, intraday updates, and post-market reviews. You'll learn to see patterns that others miss and develop the patience to wait for the perfect setup.",
-        "From chart patterns to economic calendars, we cover every aspect of market analysis. Whether you're trading forex, stocks, or crypto, the principles remain the same: understand the game, know your edge, and execute with precision.",
+        "From chart patterns to economic calendars, we cover every aspect of market analysis. Whether you're trading crypto or the Indian market (Nifty, Bank Nifty & equities), the principles remain the same: understand the game, know your edge, and execute with precision.",
       ],
     },
     "risk-management": {

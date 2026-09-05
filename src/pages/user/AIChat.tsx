@@ -74,7 +74,7 @@ const FEATURE_CARDS: {
     title: 'Risk & Sizing',
     desc: 'Position sizing, drawdown math and pre-trade risk checks.',
     suggest:
-      'What position size should I use on a $50,000 prop account risking 0.5% per trade with a 60 pip stop on EURUSD?',
+      'What position size should I use on an account risking 0.5% per trade with a 40 point stop on Nifty 50 futures?',
   },
   {
     icon: Code2,
@@ -102,9 +102,9 @@ const SUGGESTION_CHIPS = [
     suggest: 'Write a Pine Script v5 strategy for a 20/50 EMA cross with a 1.5% stop loss and 1:3 take profit.',
   },
   {
-    label: 'How do I size a $50K prop trade?',
+    label: 'How do I size a Nifty/Crypto trade?',
     suggest:
-      'What position size should I use on a $50,000 prop account risking 0.5% per trade with a 60 pip stop on EURUSD?',
+      'What position size should I use on an account risking 0.5% per trade with a 40 point stop on Nifty 50 or 2% on BTC?',
   },
   {
     label: "What's the fix for revenge trading?",
@@ -115,9 +115,9 @@ const SUGGESTION_CHIPS = [
 const PINNED_ITEMS = [
   { label: 'BTC 4H sweep — long setup', suggest: 'BTC swept the 4H low into demand — is a long valid here?' },
   {
-    label: 'Prop challenge sizing',
+    label: 'Nifty & Crypto sizing',
     suggest:
-      'What position size should I use on a $50,000 prop account risking 0.5% per trade with a 60 pip stop on EURUSD?',
+      'What position size should I use on an account risking 0.5% per trade with a 40 point stop on Nifty 50 futures?',
   },
   { label: 'Gold news-week plan', suggest: 'Gold has CPI and FOMC this week. Build me a news-week game plan.' },
   {
@@ -127,7 +127,7 @@ const PINNED_ITEMS = [
 ];
 
 const HISTORY_GROUPS: { label: string; items: string[] }[] = [
-  { label: 'Today', items: ['EURUSD London range read', 'Backtest: EMA cross idea'] },
+  { label: 'Today', items: ['Nifty 50 opening range read', 'Backtest: EMA cross idea'] },
   { label: 'Yesterday', items: ['Revenge trading protocol', 'SOL liquidity map'] },
   { label: '7 days', items: ['Weekly watchlist build', 'Funding rate strategy'] },
 ];

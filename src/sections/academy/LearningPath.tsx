@@ -30,8 +30,8 @@ const STEPS: Step[] = [
   },
   {
     number: 4,
-    title: 'Get Funded',
-    description: 'Pass the prop challenge and manage real capital with rules.',
+    title: 'Scale Capital',
+    description: 'Master execution protocols and scale real capital in Indian Markets & Crypto with rules.',
     delay: 360,
     final: true,
   },

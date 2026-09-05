@@ -15,7 +15,7 @@ interface GalleryItem {
 const GALLERY: GalleryItem[] = [
   { image: '/images/capability-2.jpg', title: 'Dubai Traders Meetup', meta: '2025 · 180 attendees' },
   { image: '/images/capability-3.jpg', title: 'Psychology Bootcamp', meta: '2025 · Online · 2.4K live' },
-  { image: '/images/research-2.jpg', title: 'Funded Trader Awards', meta: '2024 · Bangalore' },
+  { image: '/images/research-2.jpg', title: 'Indian Market Traders Summit', meta: '2024 · Bangalore' },
   { image: '/images/research-4.jpg', title: 'Live Trading Arena', meta: '2024 · 40+ meetups · 6 cities' },
 ];
 
@@ -219,7 +219,7 @@ export default function EventsSection() {
             Mumbai Trading Summit 2026
           </h3>
           <p style={{ fontSize: 15, lineHeight: 1.65, color: 'rgba(255,255,255,0.6)', margin: '0 0 26px', fontWeight: 300, maxWidth: 440 }}>
-            A full day of live market breakdowns, prop-firm workshops and networking with 300+ traders from the
+            A full day of live market breakdowns, Nifty/Bank Nifty & Crypto workshops, and networking with 300+ traders from the
             community.
           </p>
           <div className="flex gap-6 flex-wrap" style={{ marginBottom: 28 }}>

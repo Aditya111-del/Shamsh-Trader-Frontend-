@@ -6,6 +6,8 @@ import api from '../../lib/api';
 import { useAuth } from '../../contexts/AuthContext';
 import { useMagnetic } from '../../hooks/useMagnetic';
 import ThreeBg from '../../components/ThreeBg';
+import { useGoogleAuth } from '../../hooks/useGoogleAuth';
+import GoogleAuthModal from '../../components/GoogleAuthModal';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -20,6 +22,13 @@ export default function Register() {
   const navigate = useNavigate();
   const { login } = useAuth();
   const magnetRef = useMagnetic<HTMLButtonElement>(10);
+  const {
+    signInWithGoogle,
+    loginWithDemoGoogle,
+    isLoading: isGoogleLoading,
+    showConfigModal,
+    setShowConfigModal,
+  } = useGoogleAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -307,9 +316,11 @@ export default function Register() {
           <div className="grid grid-cols-2" style={{ gap: 14, animation: 'fadeSlideUp .9s ease .26s forwards', opacity: 0 }}>
             <button
               type="button"
+              onClick={signInWithGoogle}
+              disabled={isLoading || isGoogleLoading}
               onMouseEnter={() => setGoogleHover(true)}
               onMouseLeave={() => setGoogleHover(false)}
-              style={{ ...socialBtnBaseStyle, ...(googleHover ? socialBtnHoverStyle : {}) }}
+              style={{ ...socialBtnBaseStyle, ...(googleHover ? socialBtnHoverStyle : {}), opacity: isGoogleLoading ? 0.7 : 1 }}
             >
               <svg width="17" height="17" viewBox="0 0 24 24">
                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z" />
@@ -317,7 +328,7 @@ export default function Register() {
                 <path fill="#FBBC05" d="M5.84 14.1A6.6 6.6 0 0 1 5.5 12c0-.73.13-1.44.34-2.1V7.06H2.18A11 11 0 0 0 1 12c0 1.77.43 3.45 1.18 4.94l3.66-2.84z" />
                 <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.16-3.16A11 11 0 0 0 12 1 11 11 0 0 0 2.18 7.06l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z" />
               </svg>
-              Google
+              {isGoogleLoading ? 'Connecting…' : 'Google'}
             </button>
             <button
               type="button"
@@ -343,6 +354,13 @@ export default function Register() {
           <a href="#" style={{ color: 'rgba(255,255,255,0.4)' }}>Terms</a>
         </span>
       </div>
+
+      <GoogleAuthModal
+        isOpen={showConfigModal}
+        onClose={() => setShowConfigModal(false)}
+        onDemoLogin={loginWithDemoGoogle}
+        isLoading={isGoogleLoading}
+      />
     </div>
   );
 }

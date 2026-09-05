@@ -75,7 +75,7 @@ export default function BotModal({ isOpen, onClose, bot, onSaved }: BotModalProp
     const colorMap: Record<string, string> = {
       Crypto: '#eab308',
       Indices: '#60a5fa',
-      Forex: '#22c55e',
+      'Indian Market': '#22c55e',
     };
     setFormData({ ...formData, tag, tagColor: colorMap[tag] || '#22c55e' });
   };
@@ -159,7 +159,7 @@ export default function BotModal({ isOpen, onClose, bot, onSaved }: BotModalProp
                 className="w-full bg-[#181a1f] border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-green-500"
               >
                 <option value="Crypto">Crypto</option>
-                <option value="Forex">Forex</option>
+                <option value="Indian Market">Indian Market</option>
                 <option value="Indices">Indices</option>
               </select>
             </div>
