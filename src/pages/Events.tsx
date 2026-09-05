@@ -13,12 +13,12 @@ import { toast } from 'sonner';
 
 /* ── Film strip images (reused site assets) ── */
 const FILM_STRIP_IMAGES = [
+  '/images/events/patna-event-6.jpg',
+  '/images/events/patna-event-5.jpg',
   '/images/events/patna-event-1.jpg',
   '/images/events/patna-event-2.jpg',
   '/images/events/patna-event-3.jpg',
   '/images/events/patna-event-4.jpg',
-  '/images/events/patna-event-1.jpg',
-  '/images/events/patna-event-3.jpg',
 ];
 
 /* ── Past events archive mosaic data ── */
@@ -36,24 +36,24 @@ interface MosaicItem {
 const MOSAIC_ITEMS: MosaicItem[] = [
   {
     _id: 'static-archive-1',
-    image: '/images/events/patna-event-1.jpg',
+    image: '/images/events/patna-event-6.jpg',
     title: 'Patna Traders Conclave',
-    meta: '2025 · 300+ attendees · Keynote conclave',
+    meta: '2025 · 300+ attendees · Core Team & Mentors',
     badge: '2025',
     big: true,
   },
   {
     _id: 'static-archive-2',
-    image: '/images/events/patna-event-2.jpg',
-    title: 'Registration & Welcoming Desk',
-    meta: '2025 · Patna',
+    image: '/images/events/patna-event-5.jpg',
+    title: 'Audience & Traders Floor',
+    meta: '2025 · Live Audience',
     delay: 80,
   },
   {
     _id: 'static-archive-3',
-    image: '/images/capability-3.jpg',
-    title: 'Psychology Bootcamp',
-    meta: '2025 · Online · 2.4K live',
+    image: '/images/events/patna-event-1.jpg',
+    title: 'Conclave Main Stage',
+    meta: '2025 · Keynote Stage',
     delay: 140,
   },
   {
@@ -68,15 +68,15 @@ const MOSAIC_ITEMS: MosaicItem[] = [
   {
     _id: 'static-archive-5',
     image: '/images/events/patna-event-4.jpg',
-    title: 'Live Keynote Stage',
+    title: 'Live Keynote & Chart Analysis',
     meta: '2025 · Patna',
     delay: 120,
   },
   {
     _id: 'static-archive-6',
     image: '/images/events/patna-event-2.jpg',
-    title: 'Live Trading Arena',
-    meta: '2025 · Community Meetup',
+    title: 'Registration & Welcoming Desk',
+    meta: '2025 · Community Welcome',
     delay: 180,
   },
 ];

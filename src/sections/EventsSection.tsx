@@ -13,10 +13,10 @@ interface GalleryItem {
 }
 
 const GALLERY: GalleryItem[] = [
-  { image: '/images/events/patna-event-1.jpg', title: 'Patna Traders Conclave', meta: '2025 · 300+ attendees' },
-  { image: '/images/events/patna-event-2.jpg', title: 'Registration & Desk', meta: '2025 · Live Conclave' },
-  { image: '/images/events/patna-event-3.jpg', title: 'Indian Market Conclave', meta: '2025 · Patna Edition' },
-  { image: '/images/events/patna-event-4.jpg', title: 'Keynote Stage', meta: '2025 · Live Market Analysis' },
+  { image: '/images/events/patna-event-6.jpg', title: 'Patna Traders Conclave', meta: '2025 · Core Team & Mentors' },
+  { image: '/images/events/patna-event-5.jpg', title: 'Audience & Traders Floor', meta: '2025 · 300+ Live Attendees' },
+  { image: '/images/events/patna-event-1.jpg', title: 'Conclave Main Stage', meta: '2025 · Keynote & Strategy' },
+  { image: '/images/events/patna-event-2.jpg', title: 'Registration & Desk', meta: '2025 · Live Welcome' },
 ];
 
 function GalleryTile({ item, delay }: { item: GalleryItem; delay: number }) {

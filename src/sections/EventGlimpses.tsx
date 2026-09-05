@@ -6,37 +6,39 @@ const GLIMPSE_EVENTS = [
   {
     name: "Patna Traders Conclave",
     images: [
+      "/images/events/patna-event-6.jpg", 
+      "/images/events/patna-event-5.jpg", 
       "/images/events/patna-event-1.jpg", 
+      "/images/events/patna-event-3.jpg",
       "/images/events/patna-event-2.jpg", 
-      "/images/events/patna-event-3.jpg", 
       "/images/events/patna-event-4.jpg"
     ]
   },
   {
     name: "Psychology Bootcamp",
     images: [
+      "/images/events/patna-event-5.jpg", 
       "/images/events/patna-event-2.jpg", 
-      "/images/events/patna-event-4.jpg", 
-      "/images/events/patna-event-1.jpg", 
-      "/images/events/patna-event-3.jpg"
+      "/images/events/patna-event-6.jpg", 
+      "/images/events/patna-event-1.jpg"
     ]
   },
   {
     name: "Live Trading Arena",
     images: [
       "/images/events/patna-event-3.jpg", 
-      "/images/events/patna-event-1.jpg", 
+      "/images/events/patna-event-6.jpg", 
       "/images/events/patna-event-4.jpg", 
-      "/images/events/patna-event-2.jpg"
+      "/images/events/patna-event-5.jpg"
     ]
   },
   {
     name: "Indian Market Traders Summit",
     images: [
-      "/images/events/patna-event-4.jpg",
-      "/images/events/patna-event-3.jpg",
-      "/images/events/patna-event-2.jpg",
-      "/images/events/patna-event-1.jpg"
+      "/images/events/patna-event-1.jpg",
+      "/images/events/patna-event-5.jpg",
+      "/images/events/patna-event-6.jpg",
+      "/images/events/patna-event-3.jpg"
     ]
   }
 ];
