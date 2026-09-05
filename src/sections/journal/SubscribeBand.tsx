@@ -1,5 +1,7 @@
 import { useState, type FormEvent } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Loader2 } from 'lucide-react';
+import { toast } from 'sonner';
+import api from '../../lib/api';
 import { useReveal } from '../../hooks/useReveal';
 import { useParallax } from '../../hooks/useParallax';
 import { useMagnetic } from '../../hooks/useMagnetic';
@@ -7,6 +9,7 @@ import { useMagnetic } from '../../hooks/useMagnetic';
 export default function SubscribeBand() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const sectionGlow = useParallax<HTMLDivElement>(0.2);
   const eyebrow = useReveal<HTMLDivElement>();
@@ -15,9 +18,25 @@ export default function SubscribeBand() {
   const note = useReveal<HTMLSpanElement>({ delay: 240 });
   const magnetRef = useMagnetic<HTMLButtonElement>(20);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (!email.trim()) return;
+    setLoading(true);
+    try {
+      await api.post('/newsletter', { email: email.trim() });
+      setSubmitted(true);
+      toast.success('Subscribed! You will receive all the market reports.');
+    } catch (err: any) {
+      if (err?.response?.data?.message?.includes('already subscribed')) {
+        setSubmitted(true);
+        toast.success('You are subscribed! You will receive all the market reports.');
+      } else {
+        const msg = err?.response?.data?.message || 'Subscription failed';
+        toast.error(msg);
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -86,16 +105,27 @@ export default function SubscribeBand() {
           </em>
         </h2>
         {submitted ? (
-          <p
+          <div
+            className="flex flex-col items-center justify-center p-6 sm:p-8 rounded-3xl w-full"
             style={{
-              marginTop: 16,
-              fontSize: 15,
-              color: 'rgba(255,255,255,0.65)',
-              fontWeight: 300,
+              maxWidth: 540,
+              marginTop: 20,
+              background: 'linear-gradient(135deg, rgba(34,197,94,0.12), rgba(255,255,255,0.03))',
+              border: '1px solid rgba(34,197,94,0.4)',
+              boxShadow: '0 0 40px rgba(34,197,94,0.18)',
+              animation: 'fadeSlideUp .5s ease forwards',
             }}
           >
-            You're on the list. Check your inbox Sunday morning.
-          </p>
+            <div className="w-10 h-10 rounded-full bg-green-500/20 border border-green-500/40 flex items-center justify-center text-green-400 mb-2 shadow-[0_0_16px_rgba(34,197,94,0.4)]">
+              <CheckCircle2 size={22} />
+            </div>
+            <div className="text-xl font-extrabold text-white tracking-tight mb-1.5">
+              Status: <span className="text-green-400">Subscribed</span>
+            </div>
+            <p className="text-sm text-zinc-300 font-medium max-w-md mx-auto leading-relaxed">
+              You will receive all the market reports and weekly research directly in your inbox.
+            </p>
+          </div>
         ) : (
           <form
             ref={form.ref}
@@ -106,6 +136,7 @@ export default function SubscribeBand() {
             <input
               type="email"
               required
+              disabled={loading}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
@@ -128,22 +159,28 @@ export default function SubscribeBand() {
             <button
               ref={magnetRef}
               type="submit"
+              disabled={loading}
               aria-label="Subscribe"
+              className="cursor-pointer"
               style={{
                 width: 62,
                 height: 62,
                 borderRadius: 999,
                 background: 'linear-gradient(135deg,#84cc16,#22c55e)',
                 border: 'none',
-                cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 boxShadow: '0 0 40px rgba(34,197,94,0.35)',
                 flexShrink: 0,
+                opacity: loading ? 0.7 : 1,
               }}
             >
-              <ArrowRight size={22} strokeWidth={2.5} color="#000" />
+              {loading ? (
+                <Loader2 size={22} className="animate-spin text-black" />
+              ) : (
+                <ArrowRight size={22} strokeWidth={2.5} color="#000" />
+              )}
             </button>
           </form>
         )}
