@@ -157,7 +157,7 @@ export default function About() {
           </div>
           <div ref={stats.ref} className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6" style={stats.style}>
             {[
-              { value: '$40M+', label: 'Volume Traded' },
+              { value: '₹4 Cr+', label: 'Volume Traded' },
               { value: '10K+', label: 'Active Traders' },
               { value: '24/7', label: 'Community' },
             ].map((s, i) => (
